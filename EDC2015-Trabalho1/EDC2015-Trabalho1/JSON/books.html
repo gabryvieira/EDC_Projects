@@ -1,0 +1,114 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Books Sales</title>
+    <link href="../Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="../Content/font-awesome.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <script>
+        var order = 1;
+        arr_list = new Array();
+    function processArray(arr) {
+     
+        if (order == undefined || order == 1) {
+            order = 0;
+        }
+        else {
+            order = 1;
+        }
+
+        arr_list = arr;
+
+        var out = "<table class=\"table table-striped col-lg-12 table-condensed\"><tr><th>Title <div class=\"col-lg-10 col-lg-offset-1 dropdown\"><select id=\"sort\" class=\"btn btn-primary\"><option value=\"0\" selected> &nbsp; Name (A-Z)&nbsp;</option><option value=\"1\"> &nbsp; Name(Z-A) &nbsp; </option></select></div></th><th>Authors</th>" +
+            "<th>Type</th><th>Price</th><th>Sold_qty</th>" +
+            "<th>Notes</th><th>PubDate</th></tr>";
+        var i;
+        //alert("arr.length:" + arr.length);
+        for (i = 0; i < arr.length; i++) {
+            out += '<tr><td>' + arr[i].title + '</td><td>';
+            for (var j = 0; j < arr[i].authors.length; j++) {
+                if (j > 0)
+                    out += "  " + "<br>";
+                out += '<i class="fa fa-user"></i> &nbsp' + ' ' + arr[i].authors[j];
+            }
+            out += "</td><td>";
+            out += arr[i].type + '</td><td>' +
+            arr[i].price + '</td><td>' +
+            arr[i].ytd_sales + '</td><td>' +
+            arr[i].notes + '</td><td>' +
+            arr[i].pubdate + '</td></tr>';
+        }
+        out += "</table>";
+        document.getElementById("demo").innerHTML = out;
+    }
+    </script>
+    
+    <!-- script para obter parametro por nome  (neste caso o author_ID)-->
+    <script>
+        function getParameterByName(name) {
+            name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+            var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+                results = regex.exec(location.search);
+            return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+        }
+    </script>
+
+</head>
+<body>
+    <nav class="navbar navbar-default">
+        <ul class="nav navbar-nav">
+            <li><a href="../JSON/default.html"> <i class=" fa fa-leaf"></i> </a></li>
+            <li><a href="../JSON/default.html"> Home </a></li>
+            <li><a href="../About.aspx"> About </a></li>
+            <li><a href="../Contact.aspx"> Contact </a></li>
+            <li><a href="../authors.aspx"> <i class="fa fa-users"></i></a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+            <li><a href="../Account/Register.aspx"> Register </a></li>
+            <li><a href="../Account/Login.aspx"> Login </a></li>
+        </ul>
+    </nav>
+
+    <div class="col-lg-10 col-lg-offset-1">
+        <h2>Book Sales</h2>
+    </div>
+    <div class="col-lg-10 col-lg-offset-1">
+        <a href="default.html"><i class="fa fa-backward"></i>&nbsp Back to Authors</a> 
+    </div>
+    
+    <div class="container-fluid">
+        <div id="demo" class="col-lg-10 col-lg-offset-1"></div>
+    </div>
+
+    <div class="col-lg-10 col-lg-offset-1">
+        <footer>&copy; 2015 - My ASP.NET Application</footer>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+    <script>
+        var myUrl = "http://192.168.160.36/JSON/getAuthorTitles.aspx";
+        $.ajax({
+            type: "GET",
+            url: myUrl,
+            data: { author_ID: getParameterByName("author_ID") },
+            dataType: "jsonp",
+            success: processArray,
+            error: function (xhr, status, err) {
+            }
+        });
+    </script>
+
+    <script>
+        $('body').on('change', '#sort', function () {
+                if ($(this).val() != order) {
+
+                var array_inv = arr_list.sort();  // ordena array numa variavel auxiliar
+                array_inv.reverse();  // inverte array
+
+                processArray(array_inv); // manda para a funcao o array invertido
+            }
+        });
+    </script>
+</body>
+</html>

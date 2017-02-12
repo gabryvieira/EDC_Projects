@@ -1,0 +1,134 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>JSON - getAuthors</title>
+    <link href="../Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="../Content/font-awesome.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+
+    <style>
+        .numberCircle {
+        border-radius: 50%;
+
+        width: 85px;
+        height: 85px;
+        padding: 4px;
+
+        background: #666;
+        border: 2px solid #666;
+        color: #fff;
+        text-align: center;
+
+        }
+    </style>
+    
+
+    <script>
+        var order = 1;
+        arr_list = new Array();
+        function processArray(arr) {
+           
+            if (order == undefined || order == 1) {
+                order = 0;
+            }
+            else {
+                order = 1;
+            }
+
+            arr_list = arr;
+
+            var out = "<div class='row'>";
+            var i;
+            for (i = 0; i < arr.length; i++) {
+
+                
+                out += '<div class="col-xs-6 col-md-4"><div class="panel status panel-info"><div class="panel-body">  ' +
+                    '<div class="col-md-4">' +
+                     '<div class="numberCircle" ><h2>' + arr[i].name.replace(/[^A-Z]/g, "") + '</h2></div>' +
+                        '<small>' + arr[i].ID +'</small>' +
+                    '</div>' +
+                    '<div class="col-md-8">' +
+                        "<big>" + arr[i].name + "</big><br />" +
+                        arr[i].address + "<br />" +
+                        arr[i].city + ", " +
+                        arr[i].state + " " +
+                        arr[i].zip + "<br />" +
+                        "<i class=\"fa fa-phone\"></i>&nbsp&nbsp" + arr[i].phone + "<br />" +
+                    '</div><div class="col-md-8 col-lg-offset-4"><a href=\"/JSON/sales.html?author_ID=' + arr[i].ID + '\" class=\"btn btn-primary\">Sales</a><a href=\"/JSON/books.html?author_ID=' + arr[i].ID + '\" class=\"btn btn-primary\">Books</a></div>' +
+                    '</div></div></div>';
+            }
+            out += "</div>";
+            //out += "</table>";
+            document.getElementById("demo").innerHTML = out;
+    }
+    </script>
+</head>
+
+<body>
+    <nav class="navbar navbar-default">  
+        <ul class="nav navbar-nav">
+            <li><a href="../JSON/default.html"> <i class=" fa fa-leaf"></i> </a></li>
+            <li><a href="../JSON/default.html"> Home </a></li>
+            <li><a href="../About.aspx"> About </a></li>
+            <li><a href="../Contact.aspx"> Contact </a></li>
+            <li><a href="../authors.aspx"> <i class="fa fa-users"></i></a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+            <li><a href="../Account/Register.aspx"> Register </a></li>
+            <li><a href="../Account/Login.aspx"> Login </a></li>
+        </ul>
+    </nav>
+    <div class="col-lg-10 col-lg-offset-1">
+        <h2>Book authors</h2>   
+    </div>
+
+    <div class="col-lg-10 col-lg-offset-1 dropdown">
+        <div class="label">
+            Sort by:
+            <select id="sort" class="btn btn-primary">
+                <option value="0" selected> &nbsp; Name(A-Z) &nbsp;</option>
+                <option value="1"> &nbsp; Name(Z-A) &nbsp; </option>
+            </select>
+        </div>
+    </div>
+
+    <div class="container-fluid">
+        <div id="demo" class="col-lg-10 col-lg-offset-1"></div>
+    </div>
+    
+    <div class="col-lg-10 col-lg-offset-1">
+        <footer>&copy; 2015 - My ASP.NET Application</footer>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+    <script>
+        var myUrl = "http://192.168.160.36/JSON/getAuthors.aspx";
+        $.ajax({
+            type: "GET",
+            url: myUrl,
+            data: { numAuthors: 20 },
+            dataType: "jsonp",
+            success: processArray,
+            error: function (xhr, status, err) {
+            }
+        });
+    </script>
+
+    <script>
+        $("#sort").change(function () {  // #sort -> o ID e sort
+            if ($(this).val() != order) {
+
+                var array_inv = arr_list.sort();  // ordena array numa variavel auxiliar
+                array_inv.reverse();  // inverte array
+
+                processArray(array_inv); // manda para a funcao o array invertido
+            }
+        });
+    </script>
+
+    
+</body>
+
+</html>
+

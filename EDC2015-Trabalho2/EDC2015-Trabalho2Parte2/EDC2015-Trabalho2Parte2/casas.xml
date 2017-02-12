@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<properties>
+  <property id="1" city="Lisboa" Street="Rua de Santa Apolónia" pnumber="56" value="50">
+    <owner nif="123456789" fname="Tomas" lname="Rodrigues" pdate="1990-04-31" />
+  </property>
+  <property id="2" city="Coimbra" Street="Rua das universidades" pnumber="10" value="7000">
+    <owner nif="123450009" fname="Joana" lname="Pereira" pdate="2014-03-1" />
+  </property>
+  <property id="3" city="Aveiro" Street="Rua de Santiago" pnumber="27" value="10000">
+    <owner nif="123450001" fname="Filipa" lname="Sousa" pdate="2007-12-6" />
+  </property>
+  <property id="4" city="Lisboa" Street="Rossio Lisboa" pnumber="23" value="10000">
+    <owner nif="123456742" fname="Cavaco" lname="Silva" pdate="12-12-2019" />
+  </property>
+  <property id="5" city="Aveiro" Street="Avenida Lourenco Peixinho" pnumber="100" value="1000">
+    <owner nif="123450005" fname="Ricardo" lname="Santos" pdate="2002-10-12" />
+  </property>
+  <property id="6" city="Sevilha" Street="Rua da batacuta" pnumber="5" value="20000">
+    <owner nif="123450009" fname="Susana" lname="Pires" pdate="2004-10-10" />
+  </property>
+  <property id="8" city="Faro" Street="Rua do Aeroporto" pnumber="77" value="10000">
+    <owner nif="987654345" fname="Tomas" lname="Marques" pdate="12-12-2017" />
+  </property>
+  <property id="68" city="Aveiro" Street="Rua de Cima" pnumber="79" value="1000">
+  </property>
+</properties>

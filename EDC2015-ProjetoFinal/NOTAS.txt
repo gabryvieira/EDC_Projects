@@ -1,0 +1,10 @@
+NOTA:
+
+Mesmo sabendo que deveríamos enviar o que foi apresentado,
+achámos por bem entregar o que foi melhorado, que foi basicamente
+os inserts das notícias na BD, que era o que não estava 
+a funcionar. Se o professor tiver em conta agradecemos
+ 
+
+Gabriel Vieira  68021
+Tomás Rodrigues 68129

@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<categories>
+  <category>
+    <categoria>Desporto</categoria>
+    <imagem> http://diariodigital.sapo.pt/images_content/desporto190512.jpg </imagem>
+  </category>
+  <category>
+    <categoria>Sociedade</categoria>
+    <imagem>http://assets1.exame.abril.com.br/assets/images/2010/12/20458/size_810_16_9_centro-de-sao-paulo.jpg</imagem>
+  </category>
+  <category>
+    <categoria>Economia</categoria>
+    <imagem> http://economia.culturamix.com/blog/wp-content/gallery/capitalismo3/capitalismo-8.jpg </imagem>
+  </category>
+  <category>
+    <categoria>Tecnologia</categoria>
+    <imagem> http://www.chaveiromasterkey.com/wp-content/uploads/2014/09/tecnologia.jpg</imagem>
+  </category>
+  <category>
+    <categoria>Pais</categoria>
+    <imagem> http://boasnoticias.pt/img/bandeirinha.jpg.jpg </imagem>
+  </category>
+   <category>
+    <categoria>Politica</categoria>
+    <imagem>  http://cdn.veduca.com.br/uploads/program/5/5.jpg </imagem>
+  </category>
+   <category>
+    <categoria>Cultura</categoria>
+    <imagem> http://www.escrevologoexisto.com/wp-content/uploads/2013/11/cultura-global2.jpg </imagem>
+  </category>
+   <category>
+    <categoria>Saude</categoria>
+    <imagem>http://www.trasesa.pt/img/saude.png  </imagem>
+  </category>
+  <category>
+    <categoria>Educacao</categoria>
+    <imagem>  http://www.asbeiras.pt/wp-content/uploads/2015/04/EDUCA%C3%87%C3%83O-.jpg</imagem>
+  </category>
+
+
+
+
+
+</categories>  

@@ -1,0 +1,125 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>JSON - getAuthors</title>
+    <link href="../Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="../Content/font-awesome.css" rel="stylesheet" />
+    <script>
+        function processArray(arr) {
+            
+            arr.reverse();
+           
+
+        var out = "<div class='row'>";
+        var i;
+        for (i = 0; i < arr.length; i++) {
+
+            out += '<div class="col-xs-6 col-md-4"><div class="panel status panel-info"><div class="panel-body">  ' +
+                '<div class="col-md-4">' +
+                    '<small>' + arr[i].ID +'</small>' +
+                '</div>' +
+                '<div class="col-md-8">' +
+                    "<big>" + arr[i].name + "</big><br />" +
+                    arr[i].address + "<br />" +
+                    arr[i].city + ", " +
+                    arr[i].state + " " +
+                    arr[i].zip + "<br />" +
+                '</div><div class="col-md-8 col-lg-offset-4"><a href=\"/JSON/sales.html?author_ID=' + arr[i].ID + '\" class=\"btn btn-primary\">Sales</a><a href=\"/JSON/books.html?author_ID=' + arr[i].ID + '\" class=\"btn btn-primary\">Books</a></div>' +
+                '</div></div></div>';
+        }
+        out += "</div>";
+
+        document.getElementById("demo").innerHTML = out;
+    }
+    </script>
+    <script>
+        function sortZA(arr) {
+
+            arr = array;
+            var result = JSON.stringify(arr, null, 4).split("\n").join("<br/>");
+            result = result.split(" ").join("&nbsp;");
+            var out = "<div class='row'>";
+            arr.sort(function (a, b) {
+                return a.title.localeCompare(b.title);
+            });
+            var i;
+            for (i = arr.length; i > 0; i--) {
+
+                out += '<div class="col-xs-6 col-md-4"><div class="panel status panel-info"><div class="panel-body">  ' +
+                    '<div class="col-md-4">' +
+                        '<small>' + arr[i].ID + '</small>' +
+                    '</div>' +
+                    '<div class="col-md-8">' +
+                        "<big>" + arr[i].name + "</big><br />" +
+                        arr[i].address + "<br />" +
+                        arr[i].city + ", " +
+                        arr[i].state + " " +
+                        arr[i].zip + "<br />" +
+                    '</div><div class="col-md-8 col-lg-offset-4"><a href=\"/JSON/sales.html?author_ID=' + arr[i].ID + '\" class=\"btn btn-primary\">Sales</a><a href=\"/JSON/books.html?author_ID=' + arr[i].ID + '\" class=\"btn btn-primary\">Books</a></div>' +
+                    '</div></div></div>';
+            }
+            out += "</div>";
+            //out += "</table>";
+            document.getElementById("demo").innerHTML = out;
+        }
+    </script>
+
+</head>
+
+<body>
+    <nav class="navbar navbar-default">
+        <ul class="nav navbar-nav">
+            <li><a href="default.html"> <i class="fa fa-leaf"></i> </a></li>
+            <li><a href="default.html"> Home </a></li>
+            <li><a href="../About.aspx"> About </a></li>
+            <li><a href="../Contact.aspx"> Contact </a></li>
+            <li><a href="../authors.aspx"> <i class="fa fa-users"></i></a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+            <li><a href="../Account/Register.aspx"> Register </a></li>
+            <li><a href="../Account/Login.aspx"> Login </a></li>
+        </ul>
+    </nav>
+    <div class="col-lg-10 col-lg-offset-1">
+        <h2>Book authors</h2>
+    </div>
+
+    <div class="col-lg-10 col-lg-offset-1 dropdown">
+        <div class="label">
+            Sort by:
+            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" onclick="sortAZ()">
+                Name(Z-A)
+                <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu">
+                <li><a href="default.html" onclick="sortAZ()">Name(A-Z) </a></li>
+            </ul>
+        </div>
+    </div>
+
+
+    <div class="container-fluid">
+        <div id="demo" class="col-lg-10 col-lg-offset-1"></div>
+    </div>
+
+
+    <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+    <script>
+        var myUrl = "http://192.168.160.36/JSON/getAuthors.aspx";
+        $.ajax({
+            type: "GET",
+            url: myUrl,
+            data: { numAuthors: 8 },
+            dataType: "jsonp",
+            success: processArray,
+            error: function (xhr, status, err) {
+            }
+        });
+    </script>
+
+
+</body>
+
+</html>
+
